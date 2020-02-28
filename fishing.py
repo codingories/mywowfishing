@@ -99,7 +99,7 @@ def find_float(img_name):
     img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
     w, h = template.shape[::-1]
 
-    res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
+    res = cv2.matchTemplate(img_gray, template, cv2.TM_SQDIFF_NORMED)
 
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
     # print(min_val, max_val, min_loc, max_loc)
@@ -109,13 +109,13 @@ def find_float(img_name):
     bottom_right = (top_left[0] + w, top_left[1] + h)  # 右下角的位置
 
     # 在原图上画矩形
-    cv2.rectangle(img_rgb, top_left, bottom_right, (0, 0, 255), 2)
+    # cv2.rectangle(img_rgb, top_left, bottom_right, (0, 0, 255), 2)
 
 
-    # 显示原图和处理后的图像
-    cv2.imshow("template", template)
-    cv2.imshow("processed", img_rgb)
-    cv2.waitKey()
+    # 显示原图和处理后的图像,
+    # cv2.imshow("template", template)
+    # cv2.imshow("processed", img_rgb)
+    # cv2.waitKey()
 
     # print(min_loc)
     return top_left
@@ -171,18 +171,18 @@ def snatch():
     at.mouse.click(at.mouse.Button.RIGHT)
 
 def main():
-    # time.sleep(3)
-    # check_screen_size()
-    # while True:
-    #     send_float()
-    #     im = make_screenshot()
-    #     place = find_float(im)
-    #     move_mouse(place)
-    #     if not listen():
-    #         print('If we didn\' hear anything, lets try again')
-    #     snatch()
+    time.sleep(3)
+    check_screen_size()
+    while True:
+        send_float()
+        im = make_screenshot()
+        place = find_float(im)
+        move_mouse(place)
+        if not listen():
+            print('If we didn\' hear anything, lets try again')
+        snatch()
 
-    im = 'var/fishing_session.png'
-    place = find_float(im)
+    # im = 'var/fishing_session.png'
+    # place = find_float(im)
 
 main()
