@@ -16,10 +16,12 @@ from collections import deque
 import pyaudio
 import audioop
 
+# x = 0
+
 k = PyKeyboard()
 
 # import autopy
-
+1
 dev = False
 
 
@@ -57,7 +59,8 @@ def make_screenshot():
     size = (int(screen_start_point[0]), int(screen_start_point[1]), int(screen_end_point[0]), int(screen_end_point[1]))
     print(size)
     screenshot = ImageGrab.grab(bbox=size)
-    screenshot_name = 'var/fishing_session.png'
+    global x
+    screenshot_name = 'var/fishing_session' + str(x) + '.png'
     screenshot.save(screenshot_name)
     return screenshot_name
 
@@ -92,32 +95,69 @@ def find_float(img_name):
     # for x in range(0, 7):
 
 
-    template = cv2.imread('var/fishing_float.png', 0)
-    print('template')
-    # print(template)
+    # 加载原始的rgb图像
     img_rgb = cv2.imread(img_name)
+    # 创建一个原始图像的灰度版本，所有操作在灰度版本中处理，然后在RGB图像中使用相同坐标还原
     img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
+
+    # 加载将要搜索的图像模板
+    template = cv2.imread('var/fishing_float.png', 0)
+
+    height, width = template.shape[:2]
+    size = (int(width*0.5), int(height*0.5))
+    template = cv2.resize(template, size, interpolation=cv2.INTER_AREA)
+
+
+    # 记录图像模板的尺寸
     w, h = template.shape[::-1]
 
-    res = cv2.matchTemplate(img_gray, template, cv2.TM_CCORR_NORMED)
+    # # 查看三组图像(图像标签名称，文件名称)
+    # cv2.imshow('rgb', img_rgb)
+    # cv2.imshow('gray', img_gray)
+    # cv2.imshow('template', template)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+
+    # # 使用matchTemplate对原始灰度图像和图像模板进行匹配
+    # res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
+    # # 设定阈值
+    # threshold = 0.7s
+    # # res大于70%
+    # loc = np.where(res >= threshold)
+    #
+    # # 使用灰度图像中的坐标对原始RGB图像进行标记
+    # for pt in zip(*loc[::-1]):
+    #     print(pt)
+    #     cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (7, 249, 151), 2)
+    # # 显示图像
+    # cv2.imshow('Detected', img_rgb)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+
+
+
+    res = cv2.matchTemplate(img_gray, template, cv2.TM_SQDIFF_NORMED)
     # 'cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
     # 'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED'
+    # cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED 是最小值
 
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
     # print(min_val, max_val, min_loc, max_loc)
-
-
-    print('找到的坐标')
-    print(min_loc)
+    #
+    #
+    # print('找到的坐标')
+    # print(min_loc)
+    # top_left = (min_loc[0]-20,min_loc[1])  # 左上角的位置
     top_left = min_loc  # 左上角的位置
-    bottom_right = (top_left[0] + w, top_left[1] + h)  # 右下角的位置
 
-    # # 在原图上画矩形
-    # cv2.rectangle(img_rgb, top_left, bottom_right, (0, 0, 255), 2)
-    # # 显示原图和处理后的图像,
-    # cv2.imshow("template", template)
-    # cv2.imshow("processed", img_rgb)
-    # cv2.waitKey()
+    bottom_right = (top_left[0] + w, top_left[1] + h)  # 右下角的位置
+    #
+    # 在原图上画矩形
+    cv2.rectangle(img_rgb, top_left, bottom_right, (0, 0, 255), 2)
+    # 显示原图和处理后的图像,
+    cv2.imshow("template", template)
+    cv2.imshow("processed", img_rgb)
+    cv2.waitKey()
 
     # print(min_loc)
     return top_left
@@ -171,21 +211,27 @@ def listen():
 def snatch():
     print('Snatching!')
     at.mouse.click(at.mouse.Button.RIGHT)
+    time.sleep(0.5)
+    at.mouse.click(at.mouse.Button.RIGHT)
+
 
 def main():
-    time.sleep(3)
-    check_screen_size()
-    while True:
-        send_float()
-        im = make_screenshot()
-        place = find_float(im)
-        move_mouse(place)
-        if not listen():
-            print('If we didn\' hear anything, lets try again')
-        snatch()
+    # time.sleep(3)
+    # check_screen_size()
+    # while True:
+        # global x
+        # x += 1
+        # send_float()
+        # im = make_screenshot()
+        # place = find_float(im)
+        # move_mouse(place)
+        # if not listen():
+        #     print('If we didn\' hear anything, lets try again')
+        # snatch()
+
 
     # 调试用
-    # im = 'var/fishing_session.png'
-    # place = find_float(im)
+    im = 'var/fishing_session.png'
+    place = find_float(im)
 
 main()
