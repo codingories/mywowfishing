@@ -21,9 +21,8 @@ import audioop
 k = PyKeyboard()
 
 # import autopy
-1
 dev = False
-
+# x = 1
 
 def check_screen_size():
     print("Checking screen size")
@@ -59,8 +58,10 @@ def make_screenshot():
     size = (int(screen_start_point[0]), int(screen_start_point[1]), int(screen_end_point[0]), int(screen_end_point[1]))
     print(size)
     screenshot = ImageGrab.grab(bbox=size)
-    global x
-    screenshot_name = 'var/fishing_session' + str(x) + '.png'
+    # global x
+    # screenshot_name = 'var/fishing_session' + str(x) + '.png'
+    screenshot_name = 'var/fishing_session' + '.png'
+
     screenshot.save(screenshot_name)
     return screenshot_name
 
@@ -118,46 +119,43 @@ def find_float(img_name):
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
 
-    # # 使用matchTemplate对原始灰度图像和图像模板进行匹配
-    # res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
-    # # 设定阈值
-    # threshold = 0.7s
-    # # res大于70%
-    # loc = np.where(res >= threshold)
-    #
-    # # 使用灰度图像中的坐标对原始RGB图像进行标记
-    # for pt in zip(*loc[::-1]):
-    #     print(pt)
-    #     cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (7, 249, 151), 2)
-    # # 显示图像
-    # cv2.imshow('Detected', img_rgb)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
 
-
-
-    res = cv2.matchTemplate(img_gray, template, cv2.TM_SQDIFF_NORMED)
+    res = cv2.matchTemplate(img_gray, template, cv2.TM_CCORR_NORMED)
     # 'cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
     # 'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED'
     # cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED 是最小值
 
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
-    # print(min_val, max_val, min_loc, max_loc)
-    #
-    #
-    # print('找到的坐标')
-    # print(min_loc)
-    # top_left = (min_loc[0]-20,min_loc[1])  # 左上角的位置
-    top_left = min_loc  # 左上角的位置
+    print(min_val, max_val, min_loc, max_loc)
+
+
+    print('找到的坐标')
+    print(min_loc)
+    top_left = (min_loc[0]-60, min_loc[1]-30)  # 左上角的位置
+    # top_left = max_loc  # 左上角的位置
 
     bottom_right = (top_left[0] + w, top_left[1] + h)  # 右下角的位置
-    #
+
     # 在原图上画矩形
-    cv2.rectangle(img_rgb, top_left, bottom_right, (0, 0, 255), 2)
-    # 显示原图和处理后的图像,
-    cv2.imshow("template", template)
-    cv2.imshow("processed", img_rgb)
-    cv2.waitKey()
+    # cv2.rectangle(img_rgb, top_left, bottom_right, (0, 0, 255), 2)
+    # # # # 显示原图和处理后的图像,
+    # cv2.imshow("template", template)
+    # cv2.imshow("processed", img_rgb)
+    # cv2.waitKey()
+    #
+    # threshold = 0.8
+    # print(res)
+
+    # 3.这边是Python/Numpy的知识，后面解释
+    # loc = np.where(res <= threshold)  # 匹配程度大于%80的坐标y,x
+    # for pt in zip(*loc[::-1]):  # *号表示可选参数
+    #     print('-----------')
+    #     right_bottom = (pt[0] + w, pt[1] + h)
+    #     cv2.rectangle(img_rgb, pt, right_bottom, (0, 0, 255), 2)
+    #     cv2.imshow("template", template)
+    #     cv2.imshow("processed", img_rgb)
+    #     cv2.waitKey()
+    #
 
     # print(min_loc)
     return top_left
@@ -169,7 +167,7 @@ def listen():
     FORMAT = pyaudio.paInt16
     CHANNELS = 2
     RATE = 18000
-    THRESHOLD = 1200  # The threshold intensity that defines silence
+    THRESHOLD = 700 # The threshold intensity that defines silence
     # and noise signal (an int. lower than THRESHOLD is silence).
     SILENCE_LIMIT = 1  # Silence limit in seconds. The max ammount of seconds where
     # only silence is recorded. When this time passes the
@@ -211,27 +209,81 @@ def listen():
 def snatch():
     print('Snatching!')
     at.mouse.click(at.mouse.Button.RIGHT)
-    time.sleep(0.5)
-    at.mouse.click(at.mouse.Button.RIGHT)
+    # time.sleep(0.5)
+    # at.mouse.click(at.mouse.Button.RIGHT)
 
+
+def addBait():
+    print('addBait')
+    k.tap_key('u')
+    time.sleep(0.3)
+    k.tap_key('9')
+    at.mouse.smooth_move(137, 473)
+    at.mouse.click(at.mouse.Button.LEFT)
+    at.mouse.smooth_move(695, 173)
+    at.mouse.click(at.mouse.Button.LEFT)
+    time.sleep(11)
+    k.tap_key('u')
+
+def autoLogOut():
+    print('自动登出')
+    at.mouse.smooth_move(837, 780)
+    time.sleep(1)
+    at.mouse.click(at.mouse.Button.LEFT)
+    time.sleep(0.5)
+    at.mouse.smooth_move(650, 458)
+    at.mouse.click(at.mouse.Button.LEFT)
+    time.sleep(60)
+
+    # print(k.function_keys[5])
+    # k.tap_key(k.function_keys[5])
+    # k.tap_key(k.numpad_keys['Home'])  # Tap 'Home' on the numpad
+    # print(k)
+
+def autoLogin():
+    print('自动登录')
+    at.mouse.smooth_move(1114, 118)
+    at.mouse.click(at.mouse.Button.LEFT)
+    time.sleep(0.1)
+    at.mouse.click(at.mouse.Button.LEFT)
+    time.sleep(25)
+
+def smallLoginLogOut():
+    autoLogOut()
+    autoLogin()
 
 def main():
-    # time.sleep(3)
-    # check_screen_size()
-    # while True:
+    time.sleep(3)
+    check_screen_size()
+    x = 199
+    while True:
+        print(x)
+        x+=1
+        if x % 15 == 0:
+            print('开始装')
+            addBait()
+            # for i in range(10):
+            #     k.tap_key('q')
+            #     time.sleep(1)
+            k.tap_key('t')
+        elif x % 200 == 0:
+            smallLoginLogOut()
+
         # global x
         # x += 1
-        # send_float()
-        # im = make_screenshot()
-        # place = find_float(im)
-        # move_mouse(place)
-        # if not listen():
-        #     print('If we didn\' hear anything, lets try again')
-        # snatch()
+        send_float()
+        im = make_screenshot()
+        place = find_float(im)
+        move_mouse(place)
+        if not listen():
+            print('If we didn\' hear anything, lets try again')
+        snatch()
+
+    # addBait()
 
 
     # 调试用
-    im = 'var/fishing_session.png'
-    place = find_float(im)
+    # im = 'var/fishing_session.png'
+    # place = find_float(im)
 
 main()
