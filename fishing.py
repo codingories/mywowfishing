@@ -21,15 +21,16 @@ import audioop
 k = PyKeyboard()
 
 # import autopy
+
+# 改成True为测试
 dev = False
-# x = 1
+
 
 def check_screen_size():
     print("Checking screen size")
     img = ImageGrab.grab()
     # img.save('temp.png')
     print('img.size')
-
     print(img.size)
 
     global screen_size
@@ -65,6 +66,7 @@ def make_screenshot():
     screenshot.save(screenshot_name)
     return screenshot_name
 
+
 def move_mouse(place):
     # print(place)
     print('进入move_mouse')
@@ -77,11 +79,12 @@ def move_mouse(place):
     location_y = int(screen_start_point[1]) / 2
     print("location_x, location_y")
     print(location_x, location_y)
-    lx = location_x+x/2 + 30
-    ly = location_y+y/2 + 30
+    lx = location_x + x / 2 + 30
+    ly = location_y + y / 2 + 30
     print('ly, ly')
     print(lx, ly)
     at.mouse.smooth_move(lx, ly)
+
 
 def jump():
     print('Jump!')
@@ -90,11 +93,11 @@ def jump():
     time.sleep(1)
 
     # at.mouse.smooth_move(500,500)
+
+
 def find_float(img_name):
     print('Looking for float')
     # todo: maybe make some universal float without background?
-    # for x in range(0, 7):
-
 
     # 加载原始的rgb图像
     img_rgb = cv2.imread(img_name)
@@ -105,20 +108,11 @@ def find_float(img_name):
     template = cv2.imread('var/fishing_float.png', 0)
 
     height, width = template.shape[:2]
-    size = (int(width*0.5), int(height*0.5))
+    size = (int(width * 0.5), int(height * 0.5))
     template = cv2.resize(template, size, interpolation=cv2.INTER_AREA)
-
 
     # 记录图像模板的尺寸
     w, h = template.shape[::-1]
-
-    # # 查看三组图像(图像标签名称，文件名称)
-    # cv2.imshow('rgb', img_rgb)
-    # cv2.imshow('gray', img_gray)
-    # cv2.imshow('template', template)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-
 
     res = cv2.matchTemplate(img_gray, template, cv2.TM_CCORR_NORMED)
     # 'cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
@@ -128,34 +122,20 @@ def find_float(img_name):
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
     print(min_val, max_val, min_loc, max_loc)
 
-
     print('找到的坐标')
     print(min_loc)
-    top_left = (min_loc[0]-60, min_loc[1]-30)  # 左上角的位置
+    top_left = (min_loc[0] - 60, min_loc[1] - 30)  # 左上角的位置
     # top_left = max_loc  # 左上角的位置
 
     bottom_right = (top_left[0] + w, top_left[1] + h)  # 右下角的位置
 
-    # 在原图上画矩形
-    # cv2.rectangle(img_rgb, top_left, bottom_right, (0, 0, 255), 2)
-    # # # # 显示原图和处理后的图像,
-    # cv2.imshow("template", template)
-    # cv2.imshow("processed", img_rgb)
-    # cv2.waitKey()
-    #
-    # threshold = 0.8
-    # print(res)
-
-    # 3.这边是Python/Numpy的知识，后面解释
-    # loc = np.where(res <= threshold)  # 匹配程度大于%80的坐标y,x
-    # for pt in zip(*loc[::-1]):  # *号表示可选参数
-    #     print('-----------')
-    #     right_bottom = (pt[0] + w, pt[1] + h)
-    #     cv2.rectangle(img_rgb, pt, right_bottom, (0, 0, 255), 2)
-    #     cv2.imshow("template", template)
-    #     cv2.imshow("processed", img_rgb)
-    #     cv2.waitKey()
-    #
+    if dev:
+        # 在原图上画矩形，测试代码，测试浮标位置能否找到
+        cv2.rectangle(img_rgb, top_left, bottom_right, (0, 0, 255), 2)
+        # 显示原图和处理后的图像,
+        cv2.imshow("template", template)
+        cv2.imshow("processed", img_rgb)
+        cv2.waitKey()
 
     # print(min_loc)
     return top_left
@@ -167,7 +147,7 @@ def listen():
     FORMAT = pyaudio.paInt16
     CHANNELS = 2
     RATE = 18000
-    THRESHOLD = 700 # The threshold intensity that defines silence
+    THRESHOLD = 700  # The threshold intensity that defines silence
     # and noise signal (an int. lower than THRESHOLD is silence).
     SILENCE_LIMIT = 1  # Silence limit in seconds. The max ammount of seconds where
     # only silence is recorded. When this time passes the
@@ -181,7 +161,7 @@ def listen():
                     input=True,
                     frames_per_buffer=CHUNK)
     cur_data = ''  # current chunk  of audio data
-    rel = RATE/CHUNK
+    rel = RATE / CHUNK
     # print(rel)
     slid_win = deque(maxlen=SILENCE_LIMIT * int(rel))
 
@@ -191,7 +171,7 @@ def listen():
         try:
             cur_data = stream.read(CHUNK)
             slid_win.append(math.sqrt(abs(audioop.avg(cur_data, 4))))
-            if(sum([x > THRESHOLD for x in slid_win]) > 0):
+            if (sum([x > THRESHOLD for x in slid_win]) > 0):
                 print('I heart something!')
                 success = True
                 break
@@ -205,6 +185,7 @@ def listen():
     stream.close()
     p.terminate()
     return success
+
 
 def snatch():
     print('Snatching!')
@@ -225,6 +206,7 @@ def addBait():
     time.sleep(11)
     k.tap_key('u')
 
+
 def autoLogOut():
     print('自动登出')
     at.mouse.smooth_move(837, 780)
@@ -240,6 +222,7 @@ def autoLogOut():
     # k.tap_key(k.numpad_keys['Home'])  # Tap 'Home' on the numpad
     # print(k)
 
+
 def autoLogin():
     print('自动登录')
     at.mouse.smooth_move(1114, 118)
@@ -248,23 +231,55 @@ def autoLogin():
     at.mouse.click(at.mouse.Button.LEFT)
     time.sleep(25)
 
+
 def smallLoginLogOut():
     autoLogOut()
     autoLogin()
 
+
+t = 0
+
+
+def calculate_time():
+    t = round(time.time())
+    return t
+
 def main():
-    time.sleep(3)
-    check_screen_size()
+
+    if dev:
+        # 调试能否找到图片位置
+        im = 'var/fishing_session.png'
+        place = find_float(im)
+
+    # time.sleep(3)
+    # check_screen_size()
     x = 199
+    time_list = []
     while True:
+        t = calculate_time()
+        time_list.append(t)
+        print(time_list)
+        if len(time_list) == 2:
+            time_difference = time_list[1] - time_list[0]
+            print(time_difference)
+            if time_difference >= 5:
+                print('add bait')
+                time_list.pop(0)
+                continue
+            time_list.pop()
+
+        print('fishing')
+
+        time.sleep(3)
+
         print(x)
-        x+=1
+        x += 1
         if x % 15 == 0:
             print('开始装')
             addBait()
-            # for i in range(10):
-            #     k.tap_key('q')
-            #     time.sleep(1)
+            for i in range(10):
+                k.tap_key('q')
+                time.sleep(1)
             k.tap_key('t')
         elif x % 200 == 0:
             smallLoginLogOut()
@@ -281,9 +296,5 @@ def main():
 
     # addBait()
 
-
-    # 调试用
-    # im = 'var/fishing_session.png'
-    # place = find_float(im)
 
 main()

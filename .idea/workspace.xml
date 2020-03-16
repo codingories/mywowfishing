@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc407fdf-f20f-4429-aaaa-711930d9a444" name="Default" comment="添加readMe">
-      <change afterPath="$PROJECT_DIR$/fishing_float1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fishing.py" beforeDir="false" afterPath="$PROJECT_DIR$/fishing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/fishing_float.png" beforeDir="false" />
@@ -23,19 +22,17 @@
       <file leaf-file-name="fishing.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fishing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
-              <caret line="274" column="11" selection-start-line="274" selection-start-column="11" selection-end-line="274" selection-end-column="11" />
+            <state relative-caret-position="638">
+              <caret line="294" column="16" selection-start-line="274" selection-start-column="8" selection-end-line="294" selection-end-column="16" />
+              <folding>
+                <element signature="e#157#168#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="fishing_session.png" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/var/fishing_session.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file leaf-file-name="fishing_float.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/var/fishing_float.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
@@ -84,6 +81,7 @@
       <find>snatch</find>
       <find>addBait</find>
       <find>PyKeyboard</find>
+      <find>calc</find>
     </findStrings>
     <replaceStrings>
       <replace>ImageGrab</replace>
@@ -114,10 +112,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="54" />
+    <option name="x" value="1280" />
     <option name="y" value="23" />
-    <option name="width" value="1226" />
-    <option name="height" value="777" />
+    <option name="width" value="1920" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -162,14 +160,14 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/var" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/var" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/var/float_bac" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/var" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -219,7 +217,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="23" width="1226" height="777" extended-state="6" />
+    <frame x="1280" y="23" width="1920" height="1057" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5049416" side_tool="true" weight="0.328125" />
@@ -227,8 +226,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.4950584" visible="true" weight="0.14117648" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2778716" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.4950584" visible="true" weight="0.19583334" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18370607" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -398,8 +397,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fishing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="274" column="11" selection-start-line="274" selection-start-column="11" selection-end-line="274" selection-end-column="11" />
+        <state relative-caret-position="638">
+          <caret line="294" column="16" selection-start-line="274" selection-start-column="8" selection-end-line="294" selection-end-column="16" />
+          <folding>
+            <element signature="e#157#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
