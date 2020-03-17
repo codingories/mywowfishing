@@ -15,6 +15,7 @@ import numpy as np
 from collections import deque
 import pyaudio
 import audioop
+import sounddevice as sd
 
 # x = 0
 
@@ -24,7 +25,12 @@ k = PyKeyboard()
 
 # 改成True为测试
 dev = False
-
+a = sd.query_devices()
+# print(a)
+#
+sd.default.device[0] = 1 # 改成这个之后就直接监听内置声音
+print('-----')
+# print(a)
 
 def check_screen_size():
     print("Checking screen size")
@@ -71,18 +77,18 @@ def move_mouse(place):
     # print(place)
     print('进入move_mouse')
     x, y = place[0], place[1]
-    print(x, y)
+    # print(x, y)
     # print("Moving cursor to " + str(place))
     # print(screen_start_point[0],screen_start_point[1])
     # print(x, y)
     location_x = int(screen_start_point[0]) / 2
     location_y = int(screen_start_point[1]) / 2
-    print("location_x, location_y")
-    print(location_x, location_y)
+    # print("location_x, location_y")
+    # print(location_x, location_y)
     lx = location_x + x / 2 + 30
     ly = location_y + y / 2 + 30
-    print('ly, ly')
-    print(lx, ly)
+    # print('ly, ly')
+    # print(lx, ly)
     at.mouse.smooth_move(lx, ly)
 
 
@@ -114,7 +120,7 @@ def find_float(img_name):
     # 记录图像模板的尺寸
     w, h = template.shape[::-1]
 
-    res = cv2.matchTemplate(img_gray, template, cv2.TM_CCORR_NORMED)
+    res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF)
     # 'cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
     # 'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED'
     # cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED 是最小值
@@ -124,7 +130,7 @@ def find_float(img_name):
 
     print('找到的坐标')
     print(min_loc)
-    top_left = (min_loc[0] - 60, min_loc[1] - 30)  # 左上角的位置
+    top_left = (max_loc[0]-15, max_loc[1]-15)  # 左上角的位置
     # top_left = max_loc  # 左上角的位置
 
     bottom_right = (top_left[0] + w, top_left[1] + h)  # 右下角的位置
@@ -147,13 +153,14 @@ def listen():
     FORMAT = pyaudio.paInt16
     CHANNELS = 2
     RATE = 18000
-    THRESHOLD = 700  # The threshold intensity that defines silence
+    THRESHOLD = 1000  # The threshold intensity that defines silence
     # and noise signal (an int. lower than THRESHOLD is silence).
     SILENCE_LIMIT = 1  # Silence limit in seconds. The max ammount of seconds where
     # only silence is recorded. When this time passes the
     # recording finishes and the file is delivered.
     # Open stream
     p = pyaudio.PyAudio()
+
 
     stream = p.open(format=FORMAT,
                     channels=CHANNELS,
@@ -196,7 +203,7 @@ def snatch():
 
 def addBait():
     print('addBait')
-    k.tap_key('u')
+    k.tap_key('u') # u是设置的打开装备面板
     time.sleep(0.3)
     k.tap_key('9')
     at.mouse.smooth_move(137, 473)
@@ -251,41 +258,45 @@ def main():
         im = 'var/fishing_session.png'
         place = find_float(im)
 
-    # time.sleep(3)
-    # check_screen_size()
-    x = 199
+    time.sleep(3)
+    check_screen_size()
+    x = 0
     time_list = []
     while True:
         t = calculate_time()
         time_list.append(t)
         print(time_list)
         if len(time_list) == 2:
+            print('比较时间')
             time_difference = time_list[1] - time_list[0]
             print(time_difference)
-            if time_difference >= 5:
-                print('add bait')
+            if 300 <= time_difference:
+                print('add bait,  开始装鱼饵')
+                addBait()
                 time_list.pop(0)
                 continue
+            # elif time_difference>3600:
+            #     smallLoginLogOut()
             time_list.pop()
+        print(' start fishing')
 
-        print('fishing')
-
-        time.sleep(3)
-
-        print(x)
-        x += 1
-        if x % 15 == 0:
-            print('开始装')
-            addBait()
-            for i in range(10):
-                k.tap_key('q')
-                time.sleep(1)
-            k.tap_key('t')
-        elif x % 200 == 0:
-            smallLoginLogOut()
+        # print(x)
+        # x += 1
+        # if x % 15 == 0:
+        #     print('开始装')
+        #     addBait()
+        #     for i in range(10):
+        #         k.tap_key('q')
+        #         time.sleep(1)
+        #     k.tap_key('t')
+        # elif x % 200 == 0:
+        #     smallLoginLogOut()
 
         # global x
         # x += 1
+        k.tap_key('t')
+        for i in range(2):
+            k.tap_key('q')
         send_float()
         im = make_screenshot()
         place = find_float(im)
@@ -294,6 +305,7 @@ def main():
             print('If we didn\' hear anything, lets try again')
         snatch()
 
+    # listen()
     # addBait()
 
 

@@ -4,7 +4,7 @@
     <list default="true" id="fc407fdf-f20f-4429-aaaa-711930d9a444" name="Default" comment="添加readMe">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fishing.py" beforeDir="false" afterPath="$PROJECT_DIR$/fishing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/fishing_float.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/var/fishing_float.png" beforeDir="false" afterPath="$PROJECT_DIR$/var/fishing_float.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/fishing_session.png" beforeDir="false" afterPath="$PROJECT_DIR$/var/fishing_session.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,11 +22,29 @@
       <file leaf-file-name="fishing.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fishing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="294" column="16" selection-start-line="274" selection-start-column="8" selection-end-line="294" selection-end-column="16" />
+            <state relative-caret-position="66">
+              <caret line="261" column="23" lean-forward="true" selection-start-line="261" selection-start-column="23" selection-end-line="261" selection-end-column="23" />
               <folding>
                 <element signature="e#157#168#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pyaudio.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/venv/myFishing/lib/python3.6/site-packages/pyaudio.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="10926">
+              <caret line="607" selection-start-line="607" selection-end-line="607" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="subprocess.py" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/Cellar/python/3.6.5_1/Frameworks/Python.framework/Versions/3.6/lib/python3.6/subprocess.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25254">
+              <caret line="1403" selection-start-line="1403" selection-end-line="1403" />
             </state>
           </provider>
         </entry>
@@ -79,9 +97,10 @@
       <find>move_mouse</find>
       <find>900</find>
       <find>snatch</find>
-      <find>addBait</find>
       <find>PyKeyboard</find>
       <find>calc</find>
+      <find>listen</find>
+      <find>addBait</find>
     </findStrings>
     <replaceStrings>
       <replace>ImageGrab</replace>
@@ -111,11 +130,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1280" />
-    <option name="y" value="23" />
-    <option name="width" value="1920" />
-    <option name="height" value="1057" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="289" />
+    <option name="y" value="57" />
+    <option name="width" value="1226" />
+    <option name="height" value="777" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -160,14 +179,14 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/var" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/var" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/var/float_bac" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/var" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -217,8 +236,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="23" width="1920" height="1057" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1226" height="777" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5049416" side_tool="true" weight="0.328125" />
@@ -226,8 +244,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.4950584" visible="true" weight="0.19583334" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18370607" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.4950584" visible="true" weight="0.30735293" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.3125" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -243,6 +261,30 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
       <window_info anchor="right" id="Coverage" order="0" side_tool="true" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31260097" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="1" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32941177" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.4950584" visible="true" weight="0.28827587" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5049416" side_tool="true" weight="0.328125" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Coverage" order="0" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -251,7 +293,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/var/fishing_session_1582786036_success.png" />
     <entry file="file://$PROJECT_DIR$/var/fishing_float_7.png" />
     <entry file="file://$PROJECT_DIR$/var/float_bac/fishing_float_bfc.png">
       <provider selected="true" editor-type-id="images" />
@@ -341,13 +382,6 @@
     <entry file="file://$PROJECT_DIR$/var/float_bac/fishing_float_lvzhou_night.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$USER_HOME$/venv/myFishing/lib/python3.6/site-packages/pyaudio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="607" selection-start-line="607" selection-end-line="607" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -372,13 +406,6 @@
     <entry file="file://$PROJECT_DIR$/var/fishing_session_none.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.1/python_stubs/1788554620/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="5106" column="8" selection-start-line="5106" selection-start-column="8" selection-end-line="5106" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/var/float_bac/fishing_float3-62.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -386,19 +413,40 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/var/fishing_float2.png" />
-    <entry file="file://$PROJECT_DIR$/fishing_float1.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file:///usr/local/Cellar/python/3.6.5_1/Frameworks/Python.framework/Versions/3.6/lib/python3.6/subprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25254">
+          <caret line="1403" selection-start-line="1403" selection-end-line="1403" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/var/fishing_float.png">
+    <entry file="file://$PROJECT_DIR$/fishing_float1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/var/fishing_session.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/var/fishing_float.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$USER_HOME$/venv/myFishing/lib/python3.6/site-packages/pyaudio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10926">
+          <caret line="607" selection-start-line="607" selection-end-line="607" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.1/python_stubs/1788554620/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4683">
+          <caret line="474" column="7" lean-forward="true" selection-start-line="474" selection-start-column="7" selection-end-line="474" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fishing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="294" column="16" selection-start-line="274" selection-start-column="8" selection-end-line="294" selection-end-column="16" />
+        <state relative-caret-position="66">
+          <caret line="261" column="23" lean-forward="true" selection-start-line="261" selection-start-column="23" selection-end-line="261" selection-end-column="23" />
           <folding>
             <element signature="e#157#168#0" expanded="true" />
           </folding>
