@@ -81,12 +81,12 @@ def move_mouse(place):
     # print("Moving cursor to " + str(place))
     # print(screen_start_point[0],screen_start_point[1])
     # print(x, y)
-    location_x = int(screen_start_point[0]) / 2
-    location_y = int(screen_start_point[1]) / 2
+    location_x = int(screen_start_point[0])
+    location_y = int(screen_start_point[1])
     # print("location_x, location_y")
     # print(location_x, location_y)
-    lx = location_x + x / 2 + 30
-    ly = location_y + y / 2 + 30
+    lx = location_x + x
+    ly = location_y + y
     # print('ly, ly')
     # print(lx, ly)
     at.mouse.smooth_move(lx, ly)
@@ -121,6 +121,8 @@ def find_float(img_name):
     w, h = template.shape[::-1]
 
     res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF)
+    # res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF)
+    #
     # 'cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
     # 'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED'
     # cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED 是最小值
@@ -130,7 +132,7 @@ def find_float(img_name):
 
     print('找到的坐标')
     print(min_loc)
-    top_left = (max_loc[0]-15, max_loc[1]-15)  # 左上角的位置
+    top_left = (max_loc[0]+15, max_loc[1]+15)  # 左上角的位置
     # top_left = max_loc  # 左上角的位置
 
     bottom_right = (top_left[0] + w, top_left[1] + h)  # 右下角的位置
@@ -204,8 +206,8 @@ def snatch():
 def addBait():
     print('addBait')
     k.tap_key('u') # u是设置的打开装备面板
-    time.sleep(0.3)
-    k.tap_key('9')
+    time.sleep(2)
+    k.tap_key('3')
     at.mouse.smooth_move(137, 473)
     at.mouse.click(at.mouse.Button.LEFT)
     at.mouse.smooth_move(695, 173)
@@ -263,20 +265,19 @@ def main():
     x = 0
     time_list = []
     while True:
+        doc = open('./record.txt','a')
         t = calculate_time()
         time_list.append(t)
         print(time_list)
         if len(time_list) == 2:
             print('比较时间')
             time_difference = time_list[1] - time_list[0]
-            print(time_difference)
-            if 300 <= time_difference:
-                print('add bait,  开始装鱼饵')
+            print(str(time_difference), end=' ', file=doc)
+            if 315 <= time_difference:
+                print('add bait,  开始装鱼饵', file=doc)
                 addBait()
                 time_list.pop(0)
                 continue
-            # elif time_difference>3600:
-            #     smallLoginLogOut()
             time_list.pop()
         print(' start fishing')
 
@@ -288,7 +289,7 @@ def main():
         #     for i in range(10):
         #         k.tap_key('q')
         #         time.sleep(1)
-        #     k.tap_key('t')
+        #u 他21     k.tap_key('t')
         # elif x % 200 == 0:
         #     smallLoginLogOut()
 
@@ -296,7 +297,7 @@ def main():
         # x += 1
         k.tap_key('t')
         for i in range(2):
-            k.tap_key('q')
+            k.tap_key('2')
         send_float()
         im = make_screenshot()
         place = find_float(im)
@@ -304,8 +305,8 @@ def main():
         if not listen():
             print('If we didn\' hear anything, lets try again')
         snatch()
-
-    # listen()
+        doc.close()
+    # listent221()
     # addBait()
 
 
