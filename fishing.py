@@ -132,14 +132,14 @@ def find_float(img_name):
 
     print('找到的坐标')
     print(min_loc)
-    top_left = (max_loc[0]+15, max_loc[1]+15)  # 左上角的位置
+    top_left = (max_loc[0]+30, max_loc[1]+30)  # 左上角的位置
     # top_left = max_loc  # 左上角的位置
 
     bottom_right = (top_left[0] + w, top_left[1] + h)  # 右下角的位置
 
     if dev:
         # 在原图上画矩形，测试代码，测试浮标位置能否找到
-        cv2.rectangle(img_rgb, top_left, bottom_right, (0, 0, 255), 2)
+        cv2.rectangle(img_rgb, top_left, btottom_right, (0, 0, 255), 2)
         # 显示原图和处理后的图像,
         cv2.imshow("template", template)
         cv2.imshow("processed", img_rgb)
@@ -208,11 +208,11 @@ def addBait():
     k.tap_key('u') # u是设置的打开装备面板
     time.sleep(2)
     k.tap_key('3')
-    at.mouse.smooth_move(137, 473)
+    at.mouse.smooth_move(155, 537)
     at.mouse.click(at.mouse.Button.LEFT)
-    at.mouse.smooth_move(695, 173)
+    at.mouse.smooth_move(791, 155)
     at.mouse.click(at.mouse.Button.LEFT)
-    time.sleep(11)
+    time.sleep(15)
     k.tap_key('u')
 
 
@@ -264,6 +264,7 @@ def main():
     check_screen_size()
     x = 0
     time_list = []
+    # addBait()
     while True:
         doc = open('./record.txt','a')
         t = calculate_time()
@@ -273,7 +274,7 @@ def main():
             print('比较时间')
             time_difference = time_list[1] - time_list[0]
             print(str(time_difference), end=' ', file=doc)
-            if 315 <= time_difference:
+            if 615 <= time_difference:
                 print('add bait,  开始装鱼饵', file=doc)
                 addBait()
                 time_list.pop(0)
@@ -289,7 +290,7 @@ def main():
         #     for i in range(10):
         #         k.tap_key('q')
         #         time.sleep(1)
-        #u 他21     k.tap_key('t')
+        #     k.tap_key('t')
         # elif x % 200 == 0:
         #     smallLoginLogOut()
 
