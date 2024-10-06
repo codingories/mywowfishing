@@ -59,4 +59,4 @@ Mac 环境下请使用 soundflower,但是目前我使用 soundflower 就听不�
 
 #### 最后,个人微信,欢迎交流！
 
-![wechat0.jpg](https://i.loli.net/2020/01/30/mbV7Q3XqxedsJKP.jpg)
+![.JPG](https://s2.loli.net/2024/10/06/EeRaOTAb9GWL3rf.jpg)
