@@ -56,7 +56,3 @@ https://www.cnblogs.com/meelo/p/6540003.html
 
 Mac 环境下请使用 soundflower,但是目前我使用 soundflower 就听不到游戏的声音了，不过问题不大，因为也不再电脑的前面。
 另外，发现通过把液体细节调到最好可以显著增加识别正确度。
-
-#### 最后,个人微信,欢迎交流！
-
-![.JPG](https://s2.loli.net/2024/10/06/EeRaOTAb9GWL3rf.jpg)
